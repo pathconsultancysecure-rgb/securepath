@@ -24,6 +24,8 @@
 
   /* ---------- Appointment form: Google Sheets submission ---------- */
 
+  // PASTE THE WEB APP URL YOU GET AFTER DEPLOYING Code.gs (see setup instructions).
+  // It will look like: https://script.google.com/macros/s/XXXXXXXX/exec
   var scriptURL = "https://script.google.com/macros/s/AKfycbxfIMAUPPQN3ZUkqj_uYHODq0IwvrYFkuAV-Ys5F2HrvkuWhlV11jCzQLDUz1jc1YQAcw/exec";
 
   var appointmentForm = document.getElementById('appointmentForm');
@@ -50,6 +52,10 @@
       };
 
       try {
+
+        if (!scriptURL || scriptURL.indexOf('PASTE_YOUR') === 0) {
+          throw new Error('Apps Script URL not configured yet — see setup instructions.');
+        }
 
         var response = await fetch(scriptURL, {
           method: 'POST',
